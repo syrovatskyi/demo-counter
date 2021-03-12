@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import Button from '@material-ui/core/Button';
 
 export const Counter = ({initialCount}) => {
@@ -21,14 +21,13 @@ export const Counter = ({initialCount}) => {
  return (
     <>
       <h1>Count: {count}</h1>
-      <Button variant="contained" color="primary" onClick={handleDecrement}>
+      <Button variant="contained" color="secondary" onClick={handleDecrement}>
         --
       </Button>
-      <Button variant="contained" color="secondary" onClick={handleIncrement}>
+      <Button variant="contained" color="primary" onClick={handleIncrement}>
         ++
       </Button>
     </>
    )
-
 };
 
