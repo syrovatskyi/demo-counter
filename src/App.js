@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import Button from '@material-ui/core/Button';
-import {CounterList} from "./CounterList";
 import Box from "@material-ui/core/Box";
+import {Page} from "./Page";
+import {CounterList} from "./CounterList";
 
 
 function App() {
@@ -97,15 +98,11 @@ function App() {
       }
     }
   };
-  console.log('data = ', data);
-  console.log('newData =', newData);
+  // console.log('data = ', data);
+  // console.log('newData =', newData);
 
   function changeArray(array) {
-    const results = [];
-    array.forEach(e =>
-     results.push(e.title)
-    );
-    return results.join(', ');
+    return array.map(e => e.title).join(', ');
   };
 
   const arr = [1, 2, 3, 4, 5];
@@ -120,7 +117,7 @@ function App() {
   };
 
   return (
-    <>
+    <div className='app'>
       <Box>
         <Button variant="contained" color="secondary" onClick={deleteCounters}>
           ---
@@ -128,13 +125,17 @@ function App() {
         <Button variant="contained" color="primary" onClick={addCounters}>
           +++
         </Button>
+
+        <div>
+          <CounterList
+            counters={arr}
+            counter={counter}/>
+        </div>
       </Box>
-      <div>
-        <CounterList
-          counters={arr}
-          counter={counter}/>
-      </div>
-    </>
+      <Box className='page-container'>
+        <Page data={newData}/>
+      </Box>
+    </div>
   )
 }
 
