@@ -1,16 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
-import {Count} from './Count'
+import Box from "@material-ui/core/Box";
+import {Count} from './Count';
 
 export const Counter = ({initialCount}) => {
-  // first way
-  // const [count, setCount] = useState(initialCount);
 
-  // second way
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    setCount(initialCount)
-  }, [initialCount]);
+  const [count, setCount] = useState(initialCount);
 
   const handleIncrement = () => {
     setCount(count => count + 1)
@@ -19,10 +14,11 @@ export const Counter = ({initialCount}) => {
   const handleDecrement = () => {
     setCount(count => count - 1)
   };
+
  return (
     <>
       {
-          <div>
+        <Box>
           <Count count={count}/>
           <Button variant="contained" color="secondary" onClick={handleDecrement}>
             --
@@ -30,9 +26,8 @@ export const Counter = ({initialCount}) => {
           <Button variant="contained" color="primary" onClick={handleIncrement}>
             ++
           </Button>
-          </div>
+        </Box>
       }
-
     </>
    )
 };
