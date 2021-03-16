@@ -1,40 +1,35 @@
 import React, {useState} from "react";
-import { v4 as uuid } from 'uuid';
 import Button from '@material-ui/core/Button';
-import {Counter} from "./Counter"
+import {CounterList} from "./CounterList";
+import Box from "@material-ui/core/Box";
 
 
 function App() {
-  const arr = [1];
+  const arr = [1, 2, 3, 4, 5];
+  const [counter, setCounter] = useState(0);
 
-  const [counters, setCounters] = useState(arr);
-  console.log('counters', counters);
   const addCounters = () => {
-    setCounters(counters => [...counters, counters.length + 1])
+    counter === arr.length - 1 ? setCounter(counter) : setCounter(counter => counter + 1)
   };
 
   const deleteCounters = () => {
-    // console.log('counters', counters);
-    // const newCounters = counters.pop();
-    // setCounters(counters)
-    const newCounters = [...counters];
-    let removeItem = newCounters.pop();
-    setCounters(newCounters)
+    counter <= 0 ? setCounter(counter) : setCounter(counter => counter - 1)
   };
 
   return (
     <>
-      <div>
+      <Box>
         <Button variant="contained" color="secondary" onClick={deleteCounters}>
           ---
         </Button>
         <Button variant="contained" color="primary" onClick={addCounters}>
           +++
         </Button>
-      </div>
+      </Box>
       <div>
-        {counters.map(item => <Counter key={uuid()} initialCount={item}/>
-        )}
+        <CounterList
+          counters={arr}
+          counter={counter}/>
       </div>
     </>
   )
