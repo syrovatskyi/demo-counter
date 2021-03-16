@@ -5,6 +5,109 @@ import Box from "@material-ui/core/Box";
 
 
 function App() {
+
+  const data = {
+    "data": {
+      "expertisePage": {
+        "id": "6033b662f694f727886a9ff4",
+        "title": "denisa",
+        "expertise_types": [
+          {
+            "id": "6035115f7097035d03ebe0fb",
+            "title": "FrontEnd",
+            "technologyAreas": [
+              {
+                "id": "603511887097035d03ebe0fd",
+                "title": "First",
+                "technologyItems": [
+                  {
+                    "id": "6033b980f694f727886a9ff9",
+                    "title": "React"
+                  },
+                  {
+                    "id": "603401d9ccf943ae0192f05e",
+                    "title": "Angular"
+                  }
+                ]
+              },
+              {
+                "id": "603511927097035d03ebe0fe",
+                "title": "Second",
+                "technologyItems": [
+                  {
+                    "id": "603511d47097035d03ebe0ff",
+                    "title": "JavaScript"
+                  },
+                  {
+                    "id": "603511dc7097035d03ebe100",
+                    "title": "HTML"
+                  },
+                  {
+                    "id": "603511e57097035d03ebe101",
+                    "title": "CSS"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "603511687097035d03ebe0fc",
+            "title": "BackEnd",
+            "technologyAreas": [
+              {
+                "id": "603511927097035d03ebe0fe",
+                "title": "Second",
+                "technologyItems": [
+                  {
+                    "id": "603511d47097035d03ebe0ff",
+                    "title": "JavaScrit"
+                  },
+                  {
+                    "id": "603511dc7097035d03ebe100",
+                    "title": "HTML"
+                  },
+                  {
+                    "id": "603511e57097035d03ebe101",
+                    "title": "CSS"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  };
+
+  const newData = {
+    data: {
+      expertisePage: {
+        ...data.data.expertisePage,
+        expertise_types: data.data.expertisePage.expertise_types.map(element => {
+          return {
+            ...element,
+            technologyAreas: element.technologyAreas.map(item => {
+              return {
+                ...item,
+                technologyItems: changeArray(item.technologyItems)
+              }
+            })
+          }
+        })
+      }
+    }
+  };
+  console.log('data = ', data);
+  console.log('newData =', newData);
+
+  function changeArray(array) {
+    const results = [];
+    array.forEach(e =>
+     results.push(e.title)
+    );
+    return results.join(', ');
+  };
+
   const arr = [1, 2, 3, 4, 5];
   const [counter, setCounter] = useState(0);
 
