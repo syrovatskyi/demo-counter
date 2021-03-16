@@ -21,13 +21,18 @@ export const Counter = ({initialCount}) => {
   };
  return (
     <>
-      <Count count={count}/>
-      <Button variant="contained" color="secondary" onClick={handleDecrement}>
-        --
-      </Button>
-      <Button variant="contained" color="primary" onClick={handleIncrement}>
-        ++
-      </Button>
+      {
+          <div>
+          <Count count={count}/>
+          <Button variant="contained" color="secondary" onClick={handleDecrement}>
+            --
+          </Button>
+          <Button variant="contained" color="primary" onClick={handleIncrement}>
+            ++
+          </Button>
+          </div>
+      }
+
     </>
    )
 };

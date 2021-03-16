@@ -1,25 +1,26 @@
-import React, {useState} from "react";
-import { v4 as uuid } from 'uuid';
+import React, {useEffect, useState} from "react";
 import Button from '@material-ui/core/Button';
-import {Counter} from "./Counter"
+import {CounterList} from "./CounterList";
 
 
 function App() {
-  const arr = [1];
+  const arr = [1, 2, 3, 4, 5];
 
   const [counters, setCounters] = useState(arr);
-  console.log('counters', counters);
+  const [counter, setCounter] = useState(0);
+  useEffect(() => {
+    setCounter(counter)
+  }, [counter]);
+
   const addCounters = () => {
-    setCounters(counters => [...counters, counters.length + 1])
+    setCounter(counter => counter + 1);
+    if (counter === counters.length - 1) {
+      setCounter(counter)
+    }
   };
 
   const deleteCounters = () => {
-    // console.log('counters', counters);
-    // const newCounters = counters.pop();
-    // setCounters(counters)
-    const newCounters = [...counters];
-    let removeItem = newCounters.pop();
-    setCounters(newCounters)
+    setCounter(counter => counter - 1)
   };
 
   return (
@@ -33,8 +34,9 @@ function App() {
         </Button>
       </div>
       <div>
-        {counters.map(item => <Counter key={uuid()} initialCount={item}/>
-        )}
+        <CounterList
+          counters={counters}
+          counter={counter}/>
       </div>
     </>
   )
